@@ -1,0 +1,45 @@
+.article_wrap {
+  padding: 15px 0;
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  .article_content {
+    background-color: #fff;
+    border-radius: 4px;
+
+    & > h2 {
+      padding-top: 8px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+  .md_cat {
+    width: 400px;
+    padding: 10px;
+    max-height: 50vh;
+    background: #fff;
+    border-radius: 4px;
+    position: sticky;
+    top: 30px;
+    left: 400px;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .article_wrap {
+    width: 95vw;
+    .article_content {
+      max-width: 100%;
+      & > h2 {
+        font-size: 40px;
+        padding-top: 20px;
+      }
+    }
+    .md_cat {
+      display: none;
+    }
+  }
+}

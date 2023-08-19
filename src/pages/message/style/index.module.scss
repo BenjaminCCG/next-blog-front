@@ -1,0 +1,67 @@
+.message {
+  width: 400px;
+  margin: 10px auto 0;
+  background: transparent;
+  border-radius: 4px;
+  padding-bottom: 10px;
+  :global(.react-emoji .react-input-emoji--input) {
+    width: 100%;
+    height: 60px;
+  }
+  :global(.ant-btn) {
+    width: 90%;
+    margin: 4px auto 0;
+    background: #97dffd;
+    transform: translateX(2%);
+  }
+  .submit_form,
+  .reply_item {
+    padding: 6px;
+    &_title {
+      margin-bottom: 8px;
+      span:last-of-type {
+        margin-left: 5px;
+        color: #333;
+      }
+    }
+  }
+  .reply_item {
+    margin-bottom: 6px;
+    display: flex;
+    img {
+      border-radius: 50%;
+      width: 40px;
+      margin-right: 8px;
+      cursor: pointer;
+      transition: all 0.4s;
+      &:hover {
+        transform: scale(1.2) rotate(360deg);
+      }
+    }
+    &_content {
+      display: flex;
+      flex-direction: column;
+      &_name {
+        font-weight: bold;
+      }
+      &_time {
+        color: #999;
+        flex: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .message {
+    width: 95vw;
+    :global(.react-emoji .react-input-emoji--input) {
+      height: 120px;
+    }
+    .reply_item {
+      img {
+        width: 120px;
+      }
+    }
+  }
+}

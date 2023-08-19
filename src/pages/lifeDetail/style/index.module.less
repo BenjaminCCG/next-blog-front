@@ -1,0 +1,48 @@
+.article_wrap {
+  padding: 15px 0;
+  width: 480px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  .article_content {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 4px;
+    & > p {
+      padding: 8px;
+      color: #999;
+    }
+    h2 {
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+
+    .editor_wrapper {
+      padding: 10px;
+      max-width: 100%;
+      * {
+        max-width: 100%;
+      }
+      video {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .article_wrap {
+    width: 95vw;
+    .article_content {
+      max-width: 100%;
+      h2 {
+        font-size: 36px;
+      }
+      .article_info {
+        padding: 0 30px;
+      }
+    }
+  }
+}

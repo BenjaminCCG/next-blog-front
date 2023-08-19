@@ -1,0 +1,40 @@
+.article_wrap {
+  padding: 15px 0;
+  width: 480px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  .article_content {
+    max-width: calc(100% - 140px);
+    background-color: #fff;
+    border-radius: 4px;
+    & > p {
+      padding: 0 8px;
+      color: #999;
+    }
+    & > h2 {
+      text-align: center;
+    }
+    h2 {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .article_wrap {
+    width: 95vw;
+    .article_content {
+      max-width: 100%;
+      h2 {
+        font-size: 36px;
+      }
+      .article_info {
+        font-size: 30px;
+        padding: 0 30px;
+      }
+    }
+  }
+}

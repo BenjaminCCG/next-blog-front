@@ -1,0 +1,74 @@
+.slider_bar {
+  width: 140px;
+  .user_info {
+    background-color: #fff;
+    border-radius: 2px;
+    padding-bottom: 10px;
+    &_bgc {
+      background: linear-gradient(43deg, #4158d0, #c850c0 46%, #ffcc70);
+      height: 35px;
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: -20px auto 0;
+      transition: all 0.5s;
+      cursor: pointer;
+      &:hover {
+        transform: rotate(360deg);
+      }
+    }
+    &_name {
+      margin: 10px 0 2px;
+    }
+    &_name,
+    &_desc {
+      text-align: center;
+      font-size: 6px;
+      color: #000;
+    }
+  }
+  .article {
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 2px;
+    // padding: 2px 4px;
+    &_title {
+      text-align: center;
+      font-size: 6px;
+      padding: 4px 0;
+    }
+    .hoverRef {
+      transition: top 0.1s ease;
+      background: #efefef;
+      border-right: 2px solid #282828;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      height: 25px;
+    }
+    .article_list_item {
+      color: #808695;
+      box-sizing: border-box;
+      height: 25px;
+      line-height: 25px;
+      padding-left: 6px;
+      border-bottom: 0.1px solid #efefef;
+      font-size: 6px;
+      cursor: pointer;
+      &:hover {
+        color: #000;
+      }
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .slider_bar {
+    display: none;
+  }
+}

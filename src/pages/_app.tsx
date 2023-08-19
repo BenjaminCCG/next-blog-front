@@ -2,8 +2,21 @@ import '../styles/global.css';
 
 import type { AppProps } from 'next/app';
 
+import Layout from '@/layout';
+import { ConfigProvider } from 'antd';
+
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Component {...pageProps} />
+  <ConfigProvider
+  theme={{
+    token: {
+      colorPrimary: '#97dffd'
+    }
+  }}
+>
+  <Layout>
+    <Component {...pageProps} />
+  </Layout>
+  </ConfigProvider>
 );
 
 export default MyApp;
