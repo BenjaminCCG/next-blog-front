@@ -86,8 +86,10 @@ export async function getStaticProps() {
     });
     return {
       props: {
-        initData
-      }
+        initData,
+      },
+      revalidate: 30
+
     };
   }
 

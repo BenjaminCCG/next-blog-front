@@ -112,7 +112,7 @@ export default function Message({ initData }: { initData: PageListRes<M>}) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const initData: PageListRes<M> = await request.post(APIS.MESSAGE_PAGE, {
     pageNum: 1,
     pageSize: 10

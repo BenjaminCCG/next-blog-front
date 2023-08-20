@@ -44,7 +44,8 @@ export async function getStaticProps() {
   return {
     props: {
       initData
-    }
+    },
+    revalidate: 30
   };
 }
 
