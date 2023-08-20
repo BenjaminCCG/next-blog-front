@@ -1,5 +1,7 @@
 import styles from './style/index.module.less';
-import { MdPreview, MdCatalog } from 'md-editor-rt';
+import { MdPreview,
+  //  MdCatalog
+   } from 'md-editor-rt';
 import { APIS } from '@/network/api/api';
 import request from '@/network/axios';
 import 'md-editor-rt/lib/preview.css';
@@ -9,12 +11,13 @@ import { useEffect, useState } from 'react';
 function About({initData}:{initData:Article}) {
   const [id] = useState('preview-only');
   const [articleDetail] = useState<Article>(initData);
-  const [scrollElement,setScrollElement] = useState<HTMLElement>();
+  // const [scrollElement,setScrollElement] = useState<HTMLElement>();
 
 
 
   useEffect(()=>{
-    setScrollElement(document.documentElement)    
+    // setScrollElement(document.documentElement)   
+     
   },[])
 
   
@@ -29,9 +32,9 @@ function About({initData}:{initData:Article}) {
               previewTheme="smart-blue"
             />
           </div>
-          <div className={styles.md_cat}>
+          {/* <div className={styles.md_cat}>
             <MdCatalog editorId={id} scrollElement={scrollElement} />
-          </div>
+          </div> */}
     </div>
   );
 }

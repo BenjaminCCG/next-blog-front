@@ -1,0 +1,30 @@
+.scrollToTopButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  svg{
+    color: #fff;
+  }
+}
+
+.scrollToTopButton.visible {
+  opacity: 1;
+}
+
+@media screen and (max-width: 991px) {
+  .scrollToTopButton {
+    bottom: 80px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+  }
+}

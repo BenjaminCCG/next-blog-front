@@ -17,9 +17,12 @@ export default function Message({ initData }: { initData: PageListRes<M>}) {
     pageSize: 10
   });
   const [messageList, setMessageList] = useState<M[]>(initData.records!);
+  const [shouldFetchData, setShouldFetchData] = useState(false);
+
   const fetchMessage = async () => {
     const res = await queryMessagePage(pageInfo);
     if (pageInfo.pageNum === 1) {
+      setShouldFetchData(true);
       setMessageList(res.records!);
     } else {
       setMessageList([...messageList, ...res.records!]);
@@ -28,7 +31,10 @@ export default function Message({ initData }: { initData: PageListRes<M>}) {
     setTotal(res.total!);
   };
   useEffect(() => {
+    if (shouldFetchData) {
     fetchMessage();
+
+    }
   }, [pageInfo.pageNum]);
   const handleSubmit = () => {
     if (!value) {

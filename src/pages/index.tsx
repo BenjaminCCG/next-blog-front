@@ -13,6 +13,7 @@ import request from '@/network/axios';
 import { APIS } from '@/network/api/api';
 import { PageListRes } from '@/network/api/api-res-model';
 import { getSliderBarData } from './staticProps';
+import ScrollToTopButton from '@/components/ScrollTop';
 
 interface Props {
   initData: PageListRes<Article>;
@@ -64,6 +65,9 @@ function Home({ initData,typeList }: Props) {
     if (shouldFetchData) {
       fetchArticlePage(Number(typeId) || undefined);
     }
+    return () => {
+      setShouldFetchData(false);
+    }
   }, [search.get('type'), pageInfo.pageNum]);
 
   useEffect(() => {
@@ -104,6 +108,8 @@ function Home({ initData,typeList }: Props) {
         </div>
         <SliderBar typeList={typeList} />
       </div>
+      <ScrollToTopButton></ScrollToTopButton>
+
     </>
   );
 }
