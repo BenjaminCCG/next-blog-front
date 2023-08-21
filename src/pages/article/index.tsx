@@ -1,7 +1,7 @@
 import SliderBar from '@/components/sliderBar';
 import styles from './style/index.module.less';
-import { MdPreview } from 'md-editor-rt';
-import { useState } from 'react';
+import {MdPreview} from 'md-editor-rt';
+import {  useState } from 'react';
 import 'md-editor-rt/lib/preview.css';
 import { Article as AT, ArticleType } from '@/network/api/api-params-moudle';
 import request from '@/network/axios';
@@ -14,7 +14,6 @@ interface Props {
 function Article({ initData ,typeList}: Props) {
   const [id] = useState('preview-only');
   const [articleDetail] = useState<AT>(initData);
-
   return (
     <div className={styles.article_wrap}>
       <div className={styles.article_content} id="md">
@@ -32,6 +31,7 @@ function Article({ initData ,typeList}: Props) {
           modelValue={articleDetail.content as string}
           previewTheme="smart-blue"
         />
+
       </div>
       <SliderBar typeList={typeList} />
     </div>
