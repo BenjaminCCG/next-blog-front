@@ -4,13 +4,14 @@ import Typed from 'typed.js';
 
 import styles from './style/index.module.less';
 import { usePathname } from 'next/navigation';
+import Login from '@/components/Login';
 
 export default function HeadNav() {
   const menuList = [
     { title: '首页', path: '/' },
-    { title: '生活分享', path: '/life' },
-    { title: '留言板', path: '/message' },
-    { title: '关于我', path: '/about' },
+    { title: '生活分享', path: '/life/' },
+    { title: '留言板', path: '/message/' },
+    { title: '关于我', path: '/about/' },
   ];
 
   const el = useRef(null);
@@ -31,7 +32,6 @@ export default function HeadNav() {
   };
 
   const pathName = usePathname();  
-  const realPath = pathName === '/' ? '/' : pathName.slice(0,-1);
     
   return (
     <div className={styles.headerWrap}>
@@ -49,7 +49,7 @@ export default function HeadNav() {
               <div
                 key={item.path}
                 className={`${styles.menuItem} ${
-                  realPath===item.path ? styles.active : ''
+                  pathName===item.path ? styles.active : ''
                 }`}
                 onClick={() => menuClick(item.path)}
               >
@@ -57,6 +57,7 @@ export default function HeadNav() {
               </div>
             );
           })}
+          <Login className={styles.menuItem}></Login>
         </div>
       </div>
       {/* 打字机区域 */}
