@@ -3,6 +3,7 @@ import axios from 'axios';
 import { axiosBaseOptions } from '@/network/axios/axios-setup';
 
 import type { Upload } from '@/network/axios/type';
+import { message } from 'antd';
 
 // 优先采用RFC 5897  让与url直接通过a标签的下载的结果相同
 // function analysisFilename(contentDisposition: string): string {
@@ -48,7 +49,8 @@ class MyAxios {
         // resBaseInfo 针对接口返回有基本格式的情况下 如上面导入的resBaseInfo基本请求返回体 基本返回体由rsCode rsCause 和 data构成
         const { data } = response;
         if (data.code !== 200) {
-          alert(`${data.rsCause}`);
+          // alert(`${data.rsCause}`);
+          message.error(`${data.msg}`);
           return Promise.reject(data.data); // 假设后台的错误信息放在了data中  这里根据情况修改
         } else {
           return data.data; // 因为下方封装默认泛型默认定义到了response下的data下的resBaseInfo下的data

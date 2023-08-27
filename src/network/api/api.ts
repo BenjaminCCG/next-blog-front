@@ -6,6 +6,7 @@ import type {
   getCanvasData,
   Message,
   PageListReq,
+  User,
 } from './api-params-moudle';
 import type { GetCityTotal, PageListRes } from './api-res-model';
 
@@ -18,7 +19,10 @@ export enum APIS {
   ARTICLE_DETAIL = '/article/queryById',
   LIFE_DETAIL = '/life/queryById',
   MESSAGE_PAGE = '/message/page',
-  MESSAGE_SAVE = '/message/save'
+  MESSAGE_SAVE = '/message/save',
+  SEND_CODE = '/user/code',
+  FRONT_LOGIN = '/user/front/login',
+  QUERY_USER = '/user/github/userInfo',
 }
 
 /** 一个示例 */
@@ -45,3 +49,16 @@ export const queryMessagePage = (data: PageListReq) =>
 
 export const saveMessage = (data: Message) =>
   request.post(APIS.MESSAGE_SAVE, data);
+
+
+export const getCaptcha = (data:{phone:string}) => {
+  return request.post<{code:string}>(APIS.SEND_CODE,data)
+}
+
+export const frontLogin = (data:{phone:string,code:string}) => {
+  return request.post<User>(APIS.FRONT_LOGIN,data)
+}
+
+export const queryUser = (id:string) => {
+  return request.get<User>(APIS.QUERY_USER+'?userId='+id)
+}

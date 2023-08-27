@@ -1,18 +1,18 @@
+import { User } from '@/network/api/api-params-moudle';
 import { create } from 'zustand';
-
+import { persist} from 'zustand/middleware'
 interface UserStore {
-  userName: string;
-  num: number;
-  changeName: () => void;
-  changeNum: () => void;
+  userInfo: User;
+  setUserInfo: (userInfo: User) => void;
 }
-export const useUserStore = create<UserStore>((set) => ({
-  userName: 'LiuJie1998',
-  num: 0,
-  changeName: () => set({ userName: 'laoer536' }),
-  changeNum: () => {
-    setTimeout(() => {
-      set((state) => ({ num: state.num + 1 }));
-    }, 1000);
-  }
-}));
+export const useUserStore = create(
+  persist<UserStore>(
+    (set) => ({
+      userInfo: {},
+      setUserInfo: (userInfo: User) => set(() => ({ userInfo })),
+    }),
+    {
+      name: 'user-storage',
+    }
+  )
+);

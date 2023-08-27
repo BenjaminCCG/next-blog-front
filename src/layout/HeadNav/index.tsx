@@ -57,7 +57,7 @@ export default function HeadNav() {
               </div>
             );
           })}
-          <Login className={styles.menuItem}></Login>
+          <Login></Login>
         </div>
       </div>
       {/* 打字机区域 */}

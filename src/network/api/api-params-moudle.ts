@@ -43,3 +43,12 @@ export interface Message {
   ip?: string;
   comment?: string;
 }
+
+
+export interface User {
+  id?: number;
+  username?: string;
+  phone?: string;
+  createTime?: string;
+  updateTime?: string;
+}
