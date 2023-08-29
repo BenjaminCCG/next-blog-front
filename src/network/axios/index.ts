@@ -81,7 +81,7 @@ class MyAxios {
                       Message.error('其他错误信息');
               }
           } */
-
+        message.error((error.response?.data as {message:string}).message)
         return Promise.reject(error);
       }
     );

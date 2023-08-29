@@ -49,7 +49,7 @@ export default function Login() {
     }
   };
 
-  const timerRef = useRef<NodeJS.Timer | null>(null);
+  const timerRef = useRef<NodeJS.Timer | null |number>(null);
 
   const sendCode = async () => {
     if(isCountDown||codeLoading) return
@@ -63,7 +63,7 @@ export default function Login() {
           timerRef.current = setInterval(() => {
             setCount((count) => {
               if (count === 0) {
-                clearInterval(timerRef.current!);
+                clearInterval(timerRef.current! as number);
                 setIsCountDown(false);
                 return 60;
               } else {
@@ -97,14 +97,14 @@ export default function Login() {
 
   useEffect(() => {
     if (!isModalOpen) {
-      clearInterval(timerRef.current!);
+      clearInterval(timerRef.current! as number);
       setIsCountDown(false);
       setCount(60);
     }
   }, [isModalOpen]);
   return (
-    
-      <div className=' ml-20'>
+
+      <div className={`ml-20 ${styles.login_container}`}>
         {userInfo.id?
          <Dropdown menu={{ items }} placement="bottom" arrow>
           <div className={`${styles.userInfo} flex items-center cursor-pointer`}>
@@ -112,7 +112,7 @@ export default function Login() {
           <span>{userInfo.username}</span>
         </div>
        </Dropdown>
-       
+
         :
         <Button onClick={showModal} style={{background:"#fff"}}>登录</Button>}
         <Modal
@@ -151,7 +151,7 @@ export default function Login() {
         </Form>
       </Modal>
       </div>
-      
-    
+
+
   );
 }

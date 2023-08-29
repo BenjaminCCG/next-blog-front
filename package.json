@@ -15,6 +15,20 @@
     "check-types": "tsc --noEmit --pretty",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": [
+      "npm run lint",
+      "npm run prettier"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./.cz-config.cjs"
+    }
+  },
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
     "@next/env": "^13.4.19",
@@ -45,8 +59,10 @@
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "autoprefixer": "^10.4.14",
+    "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.1",
+    "cz-customizable": "^7.0.0",
     "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
