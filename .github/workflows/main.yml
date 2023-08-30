@@ -20,6 +20,8 @@ jobs:
                   port: 22
                   pass: ${{ secrets.REMOTE_PASSWORD }}
                   run: | 
+                    sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npm" "/usr/local/bin/npm" 
+                    sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/pm2" "/usr/local/bin/pm2"
                     cd /root/next/next-blog-front
                     pm2 kill
                     git pull origin
