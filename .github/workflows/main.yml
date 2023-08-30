@@ -20,6 +20,7 @@ jobs:
                     cd /root/next/next-blog-front
                     pm2 kill
                     git pull origin
+                    npm run build
                     npm run pm2-start
                     pwd
                     exit
