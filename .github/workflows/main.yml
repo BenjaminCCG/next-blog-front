@@ -21,6 +21,7 @@ jobs:
                   pass: ${{ secrets.REMOTE_PASSWORD }}
                   run: | 
                     cd /root/next/next-blog-front
+                    export PATH=$PATH:/usr/local/nodejs/bin
                     /usr/local/nodejs/bin/pm2 kill
                     git pull origin
                     /usr/local/nodejs/bin/npm run install
