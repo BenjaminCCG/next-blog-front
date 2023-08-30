@@ -9,6 +9,15 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install dependencies
+              run: |
+                sudo apt-get update
+                sudo apt-get install -y npm
+                sudo npm install -g pm2
+                
             - name: Deploy
               uses: matheusvanzan/sshpass-action@v2
               with:
