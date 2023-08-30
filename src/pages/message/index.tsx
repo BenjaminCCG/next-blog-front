@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './style/index.module.scss';
+import styles from './style/index.module.less';
 import { Divider, Button, message, Skeleton } from 'antd';
 import InputEmoji from 'react-input-emoji';
 import { queryMessagePage, saveMessage } from '@/network/api/api';
@@ -8,10 +8,11 @@ import { Message as M } from '@/network/api/api-params-moudle';
 import { APIS } from '@/network/api/api';
 import request from '@/network/axios';
 import { PageListRes } from '@/network/api/api-res-model';
+import { useUserStore } from '@/store/user';
 export default function Message({ initData }: { initData: PageListRes<M>}) {
   const [value, setValue] = useState('');
   const [total, setTotal] = useState(initData.total!);
-
+  const {userInfo} = useUserStore()
   const [pageInfo, setPageInfo] = useSetState({
     pageNum: 1,
     pageSize: 10
@@ -44,7 +45,7 @@ export default function Message({ initData }: { initData: PageListRes<M>}) {
       message.warning('您说的太多啦，请小于200个字哦');
       return;
     }
-    saveMessage({ comment: value }).then(() => {
+    saveMessage({ comment: value ,name:userInfo.username}).then(() => {
       message.success('感谢您的留言支持');
       setValue('');
       if (pageInfo.pageNum > 1) {

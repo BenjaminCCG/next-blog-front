@@ -4,13 +4,14 @@ import Typed from 'typed.js';
 
 import styles from './style/index.module.less';
 import { usePathname } from 'next/navigation';
+// import Login from '@/components/Login';
 
 export default function HeadNav() {
   const menuList = [
     { title: '首页', path: '/' },
-    { title: '生活分享', path: '/life' },
-    { title: '留言板', path: '/message' },
-    { title: '关于我', path: '/about' },
+    { title: '生活分享', path: '/life/' },
+    { title: '留言板', path: '/message/' },
+    { title: '关于我', path: '/about/' },
   ];
 
   const el = useRef(null);
@@ -26,13 +27,13 @@ export default function HeadNav() {
     };
   }, []);
 
-  const menuClick = (path: string) => {
+  const menuClick = (path: string,e:any) => {
+    e.preventDefault()
     Router.push(path);
   };
 
-  const pathName = usePathname();  
-  const realPath = pathName === '/' ? '/' : pathName.slice(0,-1);
-    
+  const pathName = usePathname();
+
   return (
     <div className={styles.headerWrap}>
       {/* 导航区域 */}
@@ -46,17 +47,18 @@ export default function HeadNav() {
         <div className={styles.navBar}>
           {menuList.map((item) => {
             return (
-              <div
+              <a
                 key={item.path}
                 className={`${styles.menuItem} ${
-                  realPath===item.path ? styles.active : ''
+                  pathName===item.path ? styles.active : ''
                 }`}
-                onClick={() => menuClick(item.path)}
+                onClick={(e) => menuClick(item.path,e)}
               >
                 {item.title}
-              </div>
+              </a>
             );
           })}
+          {/* <Login></Login> */}
         </div>
       </div>
       {/* 打字机区域 */}

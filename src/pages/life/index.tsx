@@ -48,7 +48,8 @@ function Life({ initData }: { initData: PageListRes<Article>}) {
     }
   }, [pageInfo.pageNum]);
 
-  const lifeClick = (id: number) => {
+  const lifeClick = (id: number,e:any) => {
+    e.preventDefault()
     Router.push('/lifeDetail?id=' + id);
   };
   return (
@@ -56,17 +57,17 @@ function Life({ initData }: { initData: PageListRes<Article>}) {
       <Loading list={lifeList} loading={loading}>
         {lifeList.map((item, index) => {
           return (
-            <div className={styles.life_wrap_item} key={index} onClick={() => lifeClick(item.id!)}>
+            <a className={styles.life_wrap_item} key={index} onClick={(e) => lifeClick(item.id!,e)}>
               <img src={item.cover} alt="" />
               <div className={styles.life_wrap_item_info}>
-                <div className={styles.life_wrap_item_info_title}>{item.title}</div>
+                <h2 className={styles.life_wrap_item_info_title}>{item.title}</h2>
                 <div className={styles.life_wrap_item_info_desc}>{item.intro}</div>
                 <div className={styles.life_wrap_item_info_bottom}>
                   <div className={styles.life_wrap_item_info_bottom_author}>作者：Benjamin</div>
                   <div className={styles.life_wrap_item_info_bottom_time}>{item.createTime}</div>
                 </div>
               </div>
-            </div>
+            </a>
           );
         })}
       </Loading>

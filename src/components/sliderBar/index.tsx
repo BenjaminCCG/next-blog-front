@@ -21,11 +21,12 @@ export default function SliderBar({typeList}:{typeList:ArticleType[]}) {
 
   const setPosition = () => {
     const current = Number(searchParams.get('type')) || 0;
+    const index = typeList.findIndex(item=>item.id===current)
     if(hoverRef.current){
       hoverRef.current!.style.top =
-      (document.querySelectorAll('.article_item')[current] as HTMLDivElement)?.offsetTop + 'px';
+      (document.querySelectorAll('.article_item')[index] as HTMLDivElement)?.offsetTop + 'px';
     }
-    
+
   };
 
   const handleClick = (id: number) => {
@@ -33,7 +34,7 @@ export default function SliderBar({typeList}:{typeList:ArticleType[]}) {
     Router.push('/?type=' + id,undefined,{shallow:true});
   };
 
-  
+
   // const fetchTypeList = async () => {
   //   const res = await queryTypeList({});
   //   setTypeList([{ name: '全部', id: 0 }, ...res]);

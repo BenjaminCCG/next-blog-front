@@ -16,6 +16,7 @@ class MyDocument extends Document {
       <Html lang={AppConfig.locale}>
         <Head >
         {process.env.NODE_ENV !== 'production' && <script dangerouslySetInnerHTML={{ __html: noOverlayWorkaroundScript }} />}
+            <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4225926_nr625sqckjq.css" />
            </Head>
         <body>
           <Main />
