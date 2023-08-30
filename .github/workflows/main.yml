@@ -10,13 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
-
-            - name: Install dependencies
-              run: |
-                sudo apt-get update
-                sudo apt-get install -y npm
-                sudo npm install -g pm2
+            - uses: actions/checkout@v3
                 
             - name: Deploy
               uses: matheusvanzan/sshpass-action@v2
@@ -29,6 +23,7 @@ jobs:
                     cd /root/next/next-blog-front
                     pm2 kill
                     git pull origin
+                    npm run install
                     npm run build
                     npm run pm2-start
                     pwd
