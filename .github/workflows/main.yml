@@ -20,14 +20,11 @@ jobs:
                   port: 22
                   pass: ${{ secrets.REMOTE_PASSWORD }}
                   run: | 
-                    export NVM_DIR=~/.nvm
-                    source ~/.nvm/nvm.sh
-                    npm --help
                     cd /root/next/next-blog-front
-                    pm2 kill
+                    /usr/local/nodejs/bin/pm2 kill
                     git pull origin
-                    npm run install
-                    npm run build
-                    npm run pm2-start
+                    /usr/local/nodejs/bin/npm run install
+                    /usr/local/nodejs/bin/npm run build
+                    /usr/local/nodejs/bin/npm run pm2-start
                     pwd
                     exit
