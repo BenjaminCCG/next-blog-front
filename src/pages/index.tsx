@@ -15,13 +15,13 @@ import { PageListRes } from '@/network/api/api-res-model';
 import { getSliderBarData } from './staticProps';
 import ScrollToTopButton from '@/components/ScrollTop';
 import { useUserStore } from '@/store/user';
-
 interface Props {
   initData: PageListRes<Article>;
   typeList: ArticleType[];
  }
 function Home({ initData,typeList }: Props) {
-  const handleClick = (id: number) => {
+  const handleClick = (id: number,e:any) => {
+    e.preventDefault()
     Router.push('/article?id=' + id);
   };
   const [total, setTotal] = useState(initData.total!);
@@ -86,7 +86,7 @@ function Home({ initData,typeList }: Props) {
   useEffect(() => {
     if(search.get('userId')&&!userInfo.id){
       fetchGithubUserInfo(search.get('userId')!)
-    }    
+    }
   },[search.get('userId')])
 
   return (
@@ -96,10 +96,10 @@ function Home({ initData,typeList }: Props) {
           <Loading list={articleList} loading={loading}>
             {articleList.map((item, index) => {
               return (
-                <div className={styles.article_content_item} key={index} onClick={() => handleClick(item.id!)}>
+                <a className={styles.article_content_item} key={index} onClick={(e) => handleClick(item.id!,e)}>
                   <img src={item.cover} alt="" />
                   <div className={styles.article_content_item_info}>
-                    <div className={styles.article_content_item_info_title}>{item.title}</div>
+                    <h2 className={styles.article_content_item_info_title}>{item.title}</h2>
                     <div className={styles.article_content_item_info_desc}>{item.intro}</div>
                     <div className={styles.article_content_item_info_bottom}>
                       <div className={styles.article_content_item_info_bottom_author}>作者：Benjamin</div>
@@ -109,7 +109,7 @@ function Home({ initData,typeList }: Props) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               );
             })}
           </Loading>
@@ -133,7 +133,7 @@ export async function getServerSideProps(context: any) {
     // if(context.query.userId){
     //   const userInfo = await request.get<User>(APIS.QUERY_USER+'?userId='+context.query.userId);
     //   console.log(userInfo,'userInfo');
-      
+
     //   setUserInfo(userInfo);
     // }
     const initData: PageListRes<Article> = await request.post(APIS.ARTICLE_PAGE, {

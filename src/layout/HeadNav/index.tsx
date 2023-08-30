@@ -4,7 +4,7 @@ import Typed from 'typed.js';
 
 import styles from './style/index.module.less';
 import { usePathname } from 'next/navigation';
-import Login from '@/components/Login';
+// import Login from '@/components/Login';
 
 export default function HeadNav() {
   const menuList = [
@@ -27,12 +27,13 @@ export default function HeadNav() {
     };
   }, []);
 
-  const menuClick = (path: string) => {
+  const menuClick = (path: string,e:any) => {
+    e.preventDefault()
     Router.push(path);
   };
 
-  const pathName = usePathname();  
-    
+  const pathName = usePathname();
+
   return (
     <div className={styles.headerWrap}>
       {/* 导航区域 */}
@@ -46,18 +47,18 @@ export default function HeadNav() {
         <div className={styles.navBar}>
           {menuList.map((item) => {
             return (
-              <div
+              <a
                 key={item.path}
                 className={`${styles.menuItem} ${
                   pathName===item.path ? styles.active : ''
                 }`}
-                onClick={() => menuClick(item.path)}
+                onClick={(e) => menuClick(item.path,e)}
               >
                 {item.title}
-              </div>
+              </a>
             );
           })}
-          <Login></Login>
+          {/* <Login></Login> */}
         </div>
       </div>
       {/* 打字机区域 */}
